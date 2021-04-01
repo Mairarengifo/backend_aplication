@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\cliente;
+use App\Cliente;
 
-class clientecontroller extends Controller
+class ClienteController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class clientecontroller extends Controller
      */
     public function index()
     {
-        return cliente::all();
+        return Cliente::all();
         //
     }
 
@@ -36,7 +36,9 @@ class clientecontroller extends Controller
      */
     public function store(Request $request)
     {
-        return Cliente::create($request->all());
+       // $out = new \Symfony\Component\Console\Output\ConsoleOutput();
+        //$out->writeln($request->json()->all());
+        return Cliente::create($request->json()->all());
         //
     }
 
@@ -72,11 +74,7 @@ class clientecontroller extends Controller
     public function update(Request $request, $id)
     {
         $clien = Cliente::findOrFail($id);
-        $clien->nombre = $request->nombre;
-        $clien->apellido = $request->apellido;
-        $clien->nacimiento = $request->nacimiento;
-        $clien->edad = $request->edad;
-        $clien->update();
+        $clien->update($request->json()->all());
         return $clien;
         //
     }
@@ -89,7 +87,7 @@ class clientecontroller extends Controller
      */
     public function destroy($id)
     {
-        $clien = cliente::findOrFail($id);
+        $clien = Cliente::findOrFail($id);
         $clien->delete();
         //
     }

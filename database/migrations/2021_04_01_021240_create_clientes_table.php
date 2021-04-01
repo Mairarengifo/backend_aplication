@@ -18,7 +18,7 @@ class CreateClientesTable extends Migration
             $table->string('nombre');
             $table->string('apellido',200);
             $table->date('nacimiento');
-            $table->date('edad')->nullable();
+            $table->integer('edad')->nullable();
             $table->timestamps();
         });
     }
