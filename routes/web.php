@@ -20,5 +20,5 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::resource('api/clientes', 'ControladorController');
+Route::resource('api/clientes', 'ClienteController');
 
